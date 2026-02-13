@@ -2,7 +2,6 @@ import asyncio
 import time
 from maim_message import MessageServer
 
-from src.common.remote import TelemetryHeartBeatTask
 from src.manager.async_task_manager import async_task_manager
 from src.chat.utils.statistic import OnlineTimeRecordTask, StatisticOutputTask
 
@@ -88,15 +87,8 @@ class MainSystem:
         # 添加统计信息输出任务
         await async_task_manager.add_task(StatisticOutputTask())
 
-        # 添加遥测心跳任务
-        await async_task_manager.add_task(TelemetryHeartBeatTask())
-
         # 添加表达方式自动检查任务
         await async_task_manager.add_task(ExpressionAutoCheckTask())
-
-        # 启动API服务器
-        # start_api_server()
-        # logger.info("API服务器启动成功")
 
         # 启动LPMM
         lpmm_start_up()
@@ -109,12 +101,10 @@ class MainSystem:
         logger.info("表情包管理器初始化成功")
 
         # 初始化聊天管理器
-        await get_chat_manager()._initialize()
-        asyncio.create_task(get_chat_manager()._auto_save_task())
+        await get_chat_manager().initialize()
+        asyncio.create_task(get_chat_manager().auto_save_task())
 
         logger.info("聊天管理器初始化成功")
-
-        # await asyncio.sleep(0.5) #防止logger输出飞了
 
         # 将bot.py中的chat_bot.message_process消息处理函数注册到api.py的消息处理基类中
         self.app.register_message_handler(chat_bot.message_process)

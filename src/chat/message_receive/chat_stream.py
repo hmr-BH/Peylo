@@ -141,7 +141,7 @@ class ChatManager:
             # # 启动自动保存任务
             # asyncio.create_task(self._auto_save_task())
 
-    async def _initialize(self):
+    async def initialize(self):
         """异步初始化"""
         try:
             await self.load_all_streams()
@@ -149,7 +149,7 @@ class ChatManager:
         except Exception as e:
             logger.error(f"聊天管理器启动失败: {str(e)}")
 
-    async def _auto_save_task(self):
+    async def auto_save_task(self):
         """定期自动保存所有聊天流"""
         while True:
             await asyncio.sleep(300)  # 每5分钟保存一次
