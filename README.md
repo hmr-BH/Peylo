@@ -1,4 +1,5 @@
-### 这里是郝某人BH制作的 [MaiBot](https://github.com/Mai-with-u/MaiBot) 魔改版本，依据实际对话情景对原代码进行了一些修改，并添加了一些内置小功能。
+### 这里是郝某人BH制作的 MaiCore魔改版本，依据实际对话情景对原代码进行了一些修改，并添加了一些内置小功能。
+原仓库地址：https://github.com/Mai-with-u/MaiBot
 
 ---
 
